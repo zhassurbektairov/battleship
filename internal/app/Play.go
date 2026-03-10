@@ -13,31 +13,21 @@ func Play() {
 	x := int(input[0] - 'A')
 	y := int(input[1]-'0') - 1
 
-	cell := Player.InitialMap[x][y]
-
-	if cell == 'V' {
+	if Player.InitialMap[x][y] == 'V' {
 		Player.ShowMap[x][y] = 'x'
 
-		id := Player.ShipCoordinates[[2]int{x, y}]
+		id := Player.ShipID[x][y]
+		Player.ShipHealth[id]--
 
-		sunk := true
-		for i, shipID := range Player.ShipCoordinates {
-			if shipID == id {
-				if Player.ShowMap[i[0]][i[1]] != 'x' {
-					sunk = false
-					break
-				}
-			}
-		}
-
-		if sunk {
+		if Player.ShipHealth[id] == 0 {
+			utils.RevealNeighbours(&Player, x, y)
 			Player.ShipCount--
 		}
 
 		if Player.ShipCount == 0 {
 			State = false
 		}
-	} else if cell == '.' {
+	} else if Player.InitialMap[x][y] == '.' {
 		Player.ShowMap[x][y] = '-'
 	}
 
@@ -57,14 +47,13 @@ func Play() {
 ..........
 
 .##.......
+....##....
+..........
+##........
 ..........
 ..........
 ..........
 ..........
 ..........
 ..........
-..........
-..........
-..........
-
 */

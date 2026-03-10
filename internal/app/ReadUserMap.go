@@ -9,6 +9,8 @@ import (
 func ReadUserMap(user *Data) {
 	user.InitialMap = make([][]byte, 10)
 	user.ShowMap = make([][]byte, 10)
+	user.ShipHealth = make(map[int]int)
+
 	empty := ".........."
 
 	for i := 0; i < 10; i++ {
@@ -18,8 +20,6 @@ func ReadUserMap(user *Data) {
 		user.InitialMap[i] = []byte(s)
 		user.ShowMap[i] = []byte(empty)
 	}
-
-	user.ShipCoordinates = make(map[[2]int]int)
 
 	for i := 0; i < 10; i++ {
 		for j := 0; j < 10; j++ {
