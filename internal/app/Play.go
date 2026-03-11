@@ -6,32 +6,32 @@ import (
 	"fmt"
 )
 
-func Play() {
+func Play(user *Data) {
 	var input string
 	fmt.Scanln(&input)
 
 	x := int(input[0] - 'A')
 	y := int(input[1]-'0') - 1
 
-	if Player.InitialMap[x][y] == 'V' {
-		Player.ShowMap[x][y] = 'x'
+	if user.InitialMap[x][y] == 'V' {
+		user.ShowMap[x][y] = 'x'
 
-		id := Player.ShipID[x][y]
-		Player.ShipHealth[id]--
+		id := user.ShipID[x][y]
+		user.ShipHealth[id]--
 
-		if Player.ShipHealth[id] == 0 {
-			utils.RevealNeighbours(&Player, x, y)
-			Player.ShipCount--
+		if user.ShipHealth[id] == 0 {
+			utils.RevealNeighbours(user, x, y)
+			user.ShipCount--
 		}
 
-		if Player.ShipCount == 0 {
+		if user.ShipCount == 0 {
 			State = false
 		}
-	} else if Player.InitialMap[x][y] == '.' {
-		Player.ShowMap[x][y] = '-'
+	} else if user.InitialMap[x][y] == '.' {
+		user.ShowMap[x][y] = '-'
 	}
 
-	utils.PrintMap(Player)
+	utils.PrintMap(user)
 }
 
 /*

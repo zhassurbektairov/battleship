@@ -9,6 +9,6 @@ func main() {
 	app.ReadUserMap(&Player)
 	State = true
 	for State == true {
-		app.Play()
+		app.Play(&Player)
 	}
 }
