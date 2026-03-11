@@ -21,8 +21,8 @@ func ReadUserMap(user *Data) {
 		user.ShowMap[i] = []byte(empty)
 	}
 
-	for i := 0; i < 10; i++ {
-		for j := 0; j < 10; j++ {
+	for i := range 10 {
+		for j := range 10 {
 			if user.InitialMap[i][j] == '#' {
 				user.ShipCount++
 				utils.Run(user, i, j)

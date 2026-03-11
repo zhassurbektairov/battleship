@@ -13,7 +13,8 @@ func Play(user *Data) {
 	x := int(input[0] - 'A')
 	y := int(input[1]-'0') - 1
 
-	if user.InitialMap[x][y] == 'V' {
+	switch user.InitialMap[x][y] {
+	case 'V':
 		user.ShowMap[x][y] = 'x'
 
 		id := user.ShipID[x][y]
@@ -27,7 +28,7 @@ func Play(user *Data) {
 		if user.ShipCount == 0 {
 			State = false
 		}
-	} else if user.InitialMap[x][y] == '.' {
+	case '.':
 		user.ShowMap[x][y] = '-'
 	}
 
