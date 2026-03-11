@@ -29,4 +29,6 @@ func ReadUserMap(user *Data) {
 			}
 		}
 	}
+
+	utils.ValidateMap(user)
 }
