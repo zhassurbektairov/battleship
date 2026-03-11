@@ -15,6 +15,10 @@ var dir = [][2]int{
 	{1, -1},
 }
 
+func inBound(x, y int) bool {
+	return (x >= 0 && y >= 0 && x < 10 && y < 10)
+}
+
 func Run(user *Data, x, y int) {
 	user.InitialMap[x][y] = 'V'
 
@@ -25,7 +29,7 @@ func Run(user *Data, x, y int) {
 		nx := x + dir[i][0]
 		ny := y + dir[i][1]
 
-		if nx < 0 || ny < 0 || nx >= 10 || ny >= 10 {
+		if !inBound(nx, ny) {
 			continue
 		}
 
@@ -44,7 +48,7 @@ func RevealNeighbours(user *Data, x, y int) {
 		nx := x + dir[i][0]
 		ny := y + dir[i][1]
 
-		if nx < 0 || ny < 0 || nx >= 10 || ny >= 10 {
+		if !inBound(nx, ny) {
 			continue
 		}
 
