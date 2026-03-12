@@ -1,8 +1,7 @@
-package app
+package utils
 
 import (
 	. "battleship/internal/config"
-	utils "battleship/internal/utils"
 	"fmt"
 )
 
@@ -25,10 +24,10 @@ func ReadUserMap(user *Data) {
 		for j := range 10 {
 			if user.InitialMap[i][j] == '#' {
 				user.ShipCount++
-				utils.Run(user, i, j)
+				Run(user, i, j)
 			}
 		}
 	}
 
-	utils.ValidateMap(user)
+	ValidateMap(user)
 }
