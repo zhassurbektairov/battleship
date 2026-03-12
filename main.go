@@ -19,6 +19,7 @@ func main() {
 		utils.PrintMap(true, false)
 		fmt.Print(msg.PlayerMove)
 		for app.Destroy(&Pc) && State {
+			Player.Moves++
 			utils.PrintMap(true, false)
 			fmt.Print(msg.PlayerMove)
 		}
@@ -27,6 +28,7 @@ func main() {
 		}
 		fmt.Print(msg.PcMove)
 		for app.Destroy(&Player) && State {
+			Pc.Moves++
 			fmt.Print(msg.PcMove)
 		}
 		fmt.Println(msg.Result)

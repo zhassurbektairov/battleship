@@ -11,6 +11,7 @@ type Data struct {
 	ShowMap    [][]byte
 	Ship       ShipData
 	ID         int
+	Moves      int
 }
 
 var (
