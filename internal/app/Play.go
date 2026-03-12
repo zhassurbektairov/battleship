@@ -4,14 +4,27 @@ import (
 	. "battleship/internal/config"
 	utils "battleship/internal/utils"
 	"fmt"
+	"math/rand"
 )
 
-func Play(user *Data) {
-	var input string
-	fmt.Scanln(&input)
+func Destroy(user *Data) {
+	x := rand.Intn(10)
+	y := rand.Intn(10)
 
-	x := int(input[0] - 'A')
-	y := int(input[1]-'0') - 1
+	if user.ID == 2 {
+		var input string
+		fmt.Scanln(&input)
+
+		x = int(input[0] - 'A')
+		y = int(input[1]-'0') - 1
+
+		if len(input) == 3 {
+			y = 9
+		}
+	} else {
+
+		fmt.Println(string(Letters[x]), y+1)
+	}
 
 	switch user.InitialMap[x][y] {
 	case 'V':
@@ -26,35 +39,27 @@ func Play(user *Data) {
 		}
 
 		if user.Ship.Count == 0 {
+			if user.ID == 1 {
+				fmt.Println("user lost")
+			} else {
+				fmt.Println("pc lost")
+			}
 			State = false
 		}
 	case '.':
 		user.ShowMap[x][y] = '-'
 	}
-
-	utils.PrintMap(user)
 }
 
 /*
-####..####
-...#......
-...#.....#
+###...####
+..........
+...##....#
 .#.......#
+.#...#....
 .#........
-.#........
-..,..#....
+.....#....
 ..........
 .....#..#.
 #.......#.
-
-.##.......
-....##....
-..........
-##........
-..........
-..........
-..........
-..........
-..........
-..........
 */

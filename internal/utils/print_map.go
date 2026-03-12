@@ -5,8 +5,9 @@ import (
 	"fmt"
 )
 
-func PrintMap(user *Data) {
+func PrintMap() {
+	fmt.Println(" 1234567890  1234567890")
 	for i := range 10 {
-		fmt.Println(string(user.ShowMap[i]))
+		fmt.Println(string(Letters[i])+string(Player.ShowMap[i]), string(Letters[i])+string(Pc.InitialMap[i]))
 	}
 }

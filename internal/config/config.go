@@ -10,9 +10,12 @@ type Data struct {
 	InitialMap [][]byte
 	ShowMap    [][]byte
 	Ship       ShipData
+	ID         int
 }
 
 var (
 	Player, Pc Data
 	State      bool
 )
+
+const Letters = "ABCDEFGHIJ"
