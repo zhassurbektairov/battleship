@@ -63,7 +63,7 @@ func getXY(user *Data) (int, int) {
 	return x, y
 }
 
-func Destroy(user *Data) {
+func Destroy(user *Data) bool {
 	x, y := getXY(user)
 
 	switch user.InitialMap[x][y] {
@@ -86,7 +86,9 @@ func Destroy(user *Data) {
 			}
 			State = false
 		}
+		return true
 	case '.':
 		user.ShowMap[x][y] = '-'
 	}
+	return false
 }

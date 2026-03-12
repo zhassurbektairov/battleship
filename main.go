@@ -18,9 +18,17 @@ func main() {
 	for State == true {
 		utils.PrintMap(true, false)
 		fmt.Print(msg.PlayerMove)
-		app.Destroy(&Pc)
+		for app.Destroy(&Pc) && State {
+			utils.PrintMap(true, false)
+			fmt.Print(msg.PlayerMove)
+		}
+		if !State {
+			break
+		}
 		fmt.Print(msg.PcMove)
-		app.Destroy(&Player)
+		for app.Destroy(&Player) && State {
+			fmt.Print(msg.PcMove)
+		}
 		fmt.Println(msg.Result)
 	}
 	utils.PrintMap(true, true)
