@@ -9,7 +9,6 @@ var ships = []int{4, 3, 3, 2, 2, 2, 1, 1, 1, 1}
 
 func canPlace(user *Data, x, y, size, d int) bool {
 	for i := 0; i < size; i++ {
-
 		nx := x
 		ny := y
 
@@ -28,7 +27,6 @@ func canPlace(user *Data, x, y, size, d int) bool {
 		}
 
 		for k := 0; k < 8; k++ {
-
 			tx := nx + dir[k][0]
 			ty := ny + dir[k][1]
 
@@ -47,7 +45,6 @@ func canPlace(user *Data, x, y, size, d int) bool {
 
 func placeShip(user *Data, x, y, size, d int) {
 	for i := 0; i < size; i++ {
-
 		nx := x
 		ny := y
 
@@ -62,26 +59,13 @@ func placeShip(user *Data, x, y, size, d int) {
 }
 
 func GenerateMap(user *Data) {
-	user.InitialMap = make([][]byte, 10)
-	user.ShowMap = make([][]byte, 10)
-	user.Ship.Health = make(map[int]int)
-
-	empty := ".........."
-
-	for i := range 10 {
-		user.InitialMap[i] = []byte(empty)
-		user.ShowMap[i] = []byte(empty)
-	}
-
 	for {
 		for i := range 10 {
 			for j := range 10 {
 				user.InitialMap[i][j] = '.'
 			}
 		}
-
 		ok := true
-
 		for _, size := range ships {
 			placed := false
 			for attempts := 0; attempts < 100; attempts++ {
@@ -96,24 +80,19 @@ func GenerateMap(user *Data) {
 					break
 				}
 			}
-
 			if !placed {
 				ok = false
 				break
 			}
 		}
-
 		if ok {
 			break
 		}
 	}
+}
 
-	for i := range 10 {
-		for j := range 10 {
-			if user.InitialMap[i][j] == '#' {
-				user.Ship.Count++
-				Run(user, i, j)
-			}
-		}
-	}
+func GenerateUserMap(user *Data) {
+	Initialize(user)
+	GenerateMap(user)
+	CountShip(user)
 }

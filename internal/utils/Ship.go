@@ -39,6 +39,17 @@ func Run(user *Data, x, y int) {
 	}
 }
 
+func CountShip(user *Data) {
+	for i := range 10 {
+		for j := range 10 {
+			if user.InitialMap[i][j] == '#' {
+				user.Ship.Count++
+				Run(user, i, j)
+			}
+		}
+	}
+}
+
 func RevealNeighbours(user *Data, x, y int) {
 	if user.InitialMap[x][y] == 'V' {
 		user.ShowMap[x][y] = 'x'

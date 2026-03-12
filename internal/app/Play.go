@@ -7,7 +7,7 @@ import (
 	"math/rand"
 )
 
-func Destroy(user *Data) {
+func getXY(user *Data) (int, int) {
 	x := rand.Intn(10)
 	y := rand.Intn(10)
 
@@ -22,9 +22,18 @@ func Destroy(user *Data) {
 			y = 9
 		}
 	} else {
-
+		for user.ShowMap[x][y] == '-' || user.ShowMap[x][y] == 'x' {
+			x = rand.Intn(10)
+			y = rand.Intn(10)
+		}
 		fmt.Println(string(Letters[x]), y+1)
 	}
+
+	return x, y
+}
+
+func Destroy(user *Data) {
+	x, y := getXY(user)
 
 	switch user.InitialMap[x][y] {
 	case 'V':

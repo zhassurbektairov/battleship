@@ -9,10 +9,10 @@ import (
 
 func main() {
 	fmt.Println("Your map:")
-	utils.ReadUserMap(&Player)
 	Player.ID = 1
-	utils.GenerateMap(&Pc)
 	Pc.ID = 2
+	utils.ReadUserMap(&Player)
+	utils.GenerateUserMap(&Pc)
 	State = true
 	for State == true {
 		utils.PrintMap()
