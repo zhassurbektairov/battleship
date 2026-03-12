@@ -17,15 +17,15 @@ func Play(user *Data) {
 	case 'V':
 		user.ShowMap[x][y] = 'x'
 
-		id := user.ShipID[x][y]
-		user.ShipHealth[id]--
+		id := user.Ship.ID[x][y]
+		user.Ship.Health[id]--
 
-		if user.ShipHealth[id] == 0 {
+		if user.Ship.Health[id] == 0 {
 			utils.RevealNeighbours(user, x, y)
-			user.ShipCount--
+			user.Ship.Count--
 		}
 
-		if user.ShipCount == 0 {
+		if user.Ship.Count == 0 {
 			State = false
 		}
 	case '.':

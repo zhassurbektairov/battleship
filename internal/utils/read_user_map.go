@@ -8,7 +8,7 @@ import (
 func ReadUserMap(user *Data) {
 	user.InitialMap = make([][]byte, 10)
 	user.ShowMap = make([][]byte, 10)
-	user.ShipHealth = make(map[int]int)
+	user.Ship.Health = make(map[int]int)
 
 	empty := ".........."
 
@@ -23,7 +23,7 @@ func ReadUserMap(user *Data) {
 	for i := range 10 {
 		for j := range 10 {
 			if user.InitialMap[i][j] == '#' {
-				user.ShipCount++
+				user.Ship.Count++
 				Run(user, i, j)
 			}
 		}

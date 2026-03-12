@@ -22,8 +22,8 @@ func inBound(x, y int) bool {
 func Run(user *Data, x, y int) {
 	user.InitialMap[x][y] = 'V'
 
-	user.ShipID[x][y] = user.ShipCount
-	user.ShipHealth[user.ShipCount]++
+	user.Ship.ID[x][y] = user.Ship.Count
+	user.Ship.Health[user.Ship.Count]++
 
 	for i := 0; i < 4; i++ {
 		nx := x + dir[i][0]

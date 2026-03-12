@@ -9,8 +9,8 @@ import (
 func ValidateMap(user *Data) {
 	ships := map[int]int{}
 
-	for id := range user.ShipHealth {
-		size := user.ShipHealth[id]
+	for id := range user.Ship.Health {
+		size := user.Ship.Health[id]
 		if size > 4 {
 			fmt.Println("Invalid ship size")
 			os.Exit(0)
