@@ -7,24 +7,28 @@ import (
 )
 
 func PrintMap(a, b bool) {
-	fmt.Println(" Your map    Computer's map")
-	fmt.Println(" 1234567890  1234567890")
+	fmt.Println(msg.TopInfo)
 	for i := range 10 {
-		map1, map2 := "", ""
+		map1 := []byte(Player.ShowMap[i])
+		map2 := []byte(Pc.ShowMap[i])
 
 		if a == true {
-			map1 = string(Player.InitialMap[i])
-		} else {
-			map1 = string(Player.ShowMap[i])
+			for j, c := range Player.InitialMap[i] {
+				if map1[j] == '.' && c == 'V' {
+					map1[j] = '#'
+				}
+			}
 		}
 
 		if b == true {
-			map2 = string(Pc.InitialMap[i])
-		} else {
-			map2 = string(Pc.ShowMap[i])
+			for j, c := range Pc.InitialMap[i] {
+				if map2[j] == '.' && c == 'V' {
+					map2[j] = '#'
+				}
+			}
 		}
 
-		fmt.Println(string(Letters[i])+map1, string(Letters[i])+map2)
+		fmt.Println(string(Letters[i])+string(map1), string(Letters[i])+string(map2))
 	}
 	fmt.Println(msg.Icons)
 }

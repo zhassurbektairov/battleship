@@ -16,7 +16,7 @@ func main() {
 	utils.GenerateUserMap(&Pc)
 	State = true
 	for State == true {
-		utils.PrintMap(false, false)
+		utils.PrintMap(true, false)
 		fmt.Print(msg.PlayerMove)
 		app.Destroy(&Pc)
 		fmt.Print(msg.PcMove)

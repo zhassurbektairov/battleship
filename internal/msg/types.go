@@ -8,7 +8,9 @@ const (
 
 	Result = "Results of bombing:"
 
-	Icons = ". -> free cell, x -> bombed ship, - -> bombed cell"
+	TopInfo = " Your map    Computer's map\n 1234567890  1234567890"
+
+	Icons = "[ . ] live cell, [ - ] bombed cell\n[ # ] live ship, [ x ] bombed ship"
 )
 
 const (
