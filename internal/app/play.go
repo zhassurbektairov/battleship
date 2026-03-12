@@ -2,24 +2,55 @@ package app
 
 import (
 	. "battleship/internal/config"
+	msg "battleship/internal/msg"
 	utils "battleship/internal/utils"
 	"fmt"
 	"math/rand"
 )
+
+func getCoord() (bool, int, int) {
+	var input string
+	fmt.Scanln(&input)
+	x, y := -1, -1
+
+	if len(input) == 2 {
+		x = int(input[0] - 'A')
+		y = int(input[1]-'0') - 1
+		if x < 0 || x > 9 {
+			fmt.Println(msg.ErrorInputXY)
+			return false, x, y
+		}
+		if y < -1 || y > 8 {
+			fmt.Println(msg.ErrorInputXY)
+			return false, x, y
+		}
+		if y == -1 {
+			y = 9
+		}
+	} else {
+		fmt.Println(msg.ErrorInputXY)
+		return false, x, y
+	}
+
+	return true, x, y
+}
 
 func getXY(user *Data) (int, int) {
 	x := rand.Intn(10)
 	y := rand.Intn(10)
 
 	if user.ID == 2 {
-		var input string
-		fmt.Scanln(&input)
+		flag := false
+		for flag == false {
+			flag, x, y = getCoord()
+		}
+		for user.ShowMap[x][y] == '-' || user.ShowMap[x][y] == 'x' {
+			fmt.Println(msg.ErrorUsedXY)
 
-		x = int(input[0] - 'A')
-		y = int(input[1]-'0') - 1
-
-		if len(input) == 3 {
-			y = 9
+			flag = false
+			for flag == false {
+				flag, x, y = getCoord()
+			}
 		}
 	} else {
 		for user.ShowMap[x][y] == '-' || user.ShowMap[x][y] == 'x' {
